@@ -72,6 +72,31 @@
   </header><!-- End Header -->
 
   <main id="main">
+<!-- Direct Mail -->
+<br><br><br><br>
+<form onsubmit="prepareEmail(); return false;">
+      
+  <input type="text" name="subject" placeholder="Subject" required>
+  <textarea name="body" id="messageTextarea" 
+            placeholder="Name: [Your Name]\nEmail: [Your Email]\nYour Message" 
+            required></textarea>
+      <div>
+        <button type="submit">Send a message</button>
+      </div>
+      </form>
+
+      <script>
+        function prepareEmail() {
+            const subject = encodeURIComponent(document.getElementsByName('subject')[0].value);
+            const body = encodeURIComponent(document.getElementById('messageTextarea').value);
+        
+            // Construct the mailto link with encoded subject and body
+            const mailtoLink = `mailto:marydasofeng@gmail.com?subject=${subject}&body=${body}`;
+        
+            // Open the user's default email client
+            window.location.href = mailtoLink;
+        }
+        </script>
     <style>
       body {
           font-family: Arial, sans-serif;
@@ -108,18 +133,6 @@
 </head>
 <body>
 <br><br><br><br>
-<form action="process_form.php" method="post">
-  <label for="name">Name:</label>
-  <input type="text" id="name" name="name" required>
-
-  <label for="email">Email:</label>
-  <input type="email" id="email" name="email" required>
-
-  <label for="message">Message:</label>
-  <textarea id="message" name="message" required></textarea>
-
-  <button type="submit">Submit</button>
-</form>
 
 
     <!-- ======= Breadcrumbs ======= -->
@@ -173,7 +186,7 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="mailto:marydasofeng@gmail.com" method="GET">
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
