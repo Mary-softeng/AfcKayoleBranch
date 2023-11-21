@@ -73,30 +73,7 @@
 
   <main id="main">
 <!-- Direct Mail -->
-<br><br><br><br>
-<form onsubmit="prepareEmail(); return false;">
-      
-  <input type="text" name="subject" placeholder="Subject" required>
-  <textarea name="body" id="messageTextarea" 
-            placeholder="Name: [Your Name]\nEmail: [Your Email]\nYour Message" 
-            required></textarea>
-      <div>
-        <button type="submit">Send a message</button>
-      </div>
-      </form>
 
-      <script>
-        function prepareEmail() {
-            const subject = encodeURIComponent(document.getElementsByName('subject')[0].value);
-            const body = encodeURIComponent(document.getElementById('messageTextarea').value);
-        
-            // Construct the mailto link with encoded subject and body
-            const mailtoLink = `mailto:marydasofeng@gmail.com?subject=${subject}&body=${body}`;
-        
-            // Open the user's default email client
-            window.location.href = mailtoLink;
-        }
-        </script>
     <style>
       body {
           font-family: Arial, sans-serif;
@@ -185,29 +162,36 @@
           </div>
 
           <div class="col-lg-8 mt-5 mt-lg-0">
+            <h5>For any concern, leave us write an email</h5>
 
-            <form action="mailto:marydasofeng@gmail.com" method="GET">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
+            
+<form onsubmit="prepareEmail(); return false;">
+      
+  <input type="text" name="subject" id="subjectInput" style="width: 100%;" placeholder="Subject" required>
+  <textarea name="body" id="messageTextarea" 
+  style="width: 100%;"  
+  placeholder="Name: [Your Name]\nEmail: [Your Email]\nYour Message" 
+  required></textarea>
+  <input type="submit" value="Submit" style="background-color: #0568bf; color: white;padding: 10px 20px; margin-top: 10px;">
+      </form>
+
+      <script>
+        function prepareEmail() {
+            const subjectInput = document.getElementById('subjectInput');
+            const subject = encodeURIComponent(subjectInput.value);
+            const body = encodeURIComponent(document.getElementById('messageTextarea').value);
+        
+            // Construct the mailto link with encoded subject and body
+            const mailtoLink = `mailto:marydasofeng@gmail.com?subject=${subject}&body=${body}`;
+        
+            // Open the user's default email client
+            window.location.href = mailtoLink;
+        
+            // Clear the input values
+            subjectInput.value = '';
+            document.getElementById('messageTextarea').value = '';
+        }
+        </script>
 
           </div>
 
